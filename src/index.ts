@@ -1,9 +1,8 @@
-import { ChatGPTAdapter } from './adapters/chatgpt.adapter';
-import { ClaudeAIAdapter } from './adapters/claudeai.adapter';
+import { BardAdapter, ChatGPTAdapter, ClaudeAIAdapter } from './adapters';
 import { CompletionService } from './interfaces/completion.interface';
 
 interface AdapterConfig {
-  type: 'chatGPT' | 'claudeAI';
+  type: 'chatGPT' | 'claudeAI' | 'bard';
   baseurl: string;
   apiKey: string;
 }
@@ -21,6 +20,12 @@ export class CompletionServiceSelector implements CompletionService {
         break;
       case 'claudeAI':
         this.adapter = new ClaudeAIAdapter(
+          adapterConfig.baseurl,
+          adapterConfig.apiKey
+        );
+        break;
+      case 'bard':
+        this.adapter = new BardAdapter(
           adapterConfig.baseurl,
           adapterConfig.apiKey
         );

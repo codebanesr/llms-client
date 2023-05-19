@@ -1,7 +1,7 @@
 import axios from 'axios';
 import { CompletionService } from '../interfaces/completion.interface';
 
-export class ClaudeAIAdapter implements CompletionService {
+export class BardAdapter implements CompletionService {
   private readonly apiUrl: string;
   private readonly apiKey: string;
 
