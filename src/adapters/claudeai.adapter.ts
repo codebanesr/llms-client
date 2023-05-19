@@ -1,4 +1,4 @@
-import axios from 'axios';
+import axios, { AxiosRequestConfig } from 'axios';
 import { CompletionService } from '../interfaces/completion.interface';
 
 export class ClaudeAIAdapter implements CompletionService {
@@ -11,19 +11,30 @@ export class ClaudeAIAdapter implements CompletionService {
   }
 
   async complete(prompt: string, maxTokens: number): Promise<string> {
+    console.log('Claude adapter called ...');
     try {
-      axios.defaults.headers.common.Authorization = `Bearer ${this.apiKey}`;
-      axios.defaults.headers.common['Content-Type'] = `application/json`;
-
-      const response = await axios.post<ClaudeAIResponse>(this.apiUrl, {
-        prompt,
+      let data = {
+        prompt: `\n\nHuman: ${prompt}\n\nAssistant: `,
         model: 'claude-v1',
         max_tokens_to_sample: maxTokens,
         stop_sequences: ['\n\nHuman:'],
-      });
+      };
 
+      let config: AxiosRequestConfig = {
+        method: 'post',
+        maxBodyLength: Infinity,
+        url: this.apiUrl,
+        headers: {
+          'x-api-key': this.apiKey,
+          'content-type': 'application/json',
+        },
+        timeout: 10 * 1000,
+        data: data,
+      };
+
+      const response = await axios.request<ClaudeAIResponse>(config);
       // Return the first choice from the response
-      return response.data.choices[0].text;
+      return response.data.completion;
     } catch (error) {
       console.error('Error completing prompt:', error);
       throw error;
@@ -32,5 +43,11 @@ export class ClaudeAIAdapter implements CompletionService {
 }
 
 interface ClaudeAIResponse {
-  choices: { text: string }[];
+  completion: string,
+  stop: string,
+  stop_reason: string,
+  truncated: boolean,
+  log_id: string,
+  model: string,
+  exception?: string
 }

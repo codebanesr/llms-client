@@ -1,8 +1,10 @@
 import { BardAdapter, ChatGPTAdapter, ClaudeAIAdapter } from './adapters';
 import { CompletionService } from './interfaces/completion.interface';
 
-interface AdapterConfig {
-  type: 'chatGPT' | 'claudeAI' | 'bard';
+
+export type LLM = 'chatGPT' | 'claudeAI' | 'bard';
+export interface AdapterConfig {
+  type: LLM;
   baseurl: string;
   apiKey: string;
 }
