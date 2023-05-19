@@ -1,5 +1,5 @@
-import axios from "axios";
-import { CompletionService } from "../interfaces/completion.interface";
+import axios from 'axios';
+import { CompletionService } from '../interfaces/completion.interface';
 
 export class ChatGPTAdapter implements CompletionService {
   private readonly baseurl: string;
@@ -11,15 +11,17 @@ export class ChatGPTAdapter implements CompletionService {
   }
 
   async complete(prompt: string, maxTokens: number): Promise<string> {
-    const response = await axios.post(this.baseurl, {
-      prompt,
-      max_tokens: maxTokens,
-    }, {
-      headers: {
-        "Authorization": `Bearer ${this.apiKey}`,
-        "Content-Type": "application/json",
+
+    axios.defaults.headers.common.Authorization = `Bearer ${this.apiKey}`;
+    axios.defaults.headers.common['Content-Type'] = `application/json`;
+    
+    const response = await axios.post(
+      this.baseurl,
+      {
+        prompt,
+        max_tokens: maxTokens,
       },
-    });
+    );
     return response.data.choices[0].text;
   }
 }

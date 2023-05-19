@@ -12,21 +12,15 @@ export class ClaudeAIAdapter implements CompletionService {
 
   async complete(prompt: string, maxTokens: number): Promise<string> {
     try {
-      const response = await axios.post<ClaudeAIResponse>(
-        this.apiUrl,
-        {
-          prompt,
-          model: 'claude-v1',
-          max_tokens_to_sample: maxTokens,
-          stop_sequences: ['\n\nHuman:'],
-        },
-        {
-          headers: {
-            'x-api-key': this.apiKey,
-            'content-type': 'application/json',
-          },
-        },
-      );
+      axios.defaults.headers.common.Authorization = `Bearer ${this.apiKey}`;
+      axios.defaults.headers.common['Content-Type'] = `application/json`;
+
+      const response = await axios.post<ClaudeAIResponse>(this.apiUrl, {
+        prompt,
+        model: 'claude-v1',
+        max_tokens_to_sample: maxTokens,
+        stop_sequences: ['\n\nHuman:'],
+      });
 
       // Return the first choice from the response
       return response.data.choices[0].text;
