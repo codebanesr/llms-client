@@ -1,13 +1,5 @@
 import { BardAdapter, ChatGPTAdapter, ClaudeAIAdapter } from './adapters';
-import { CompletionService } from './interfaces/completion.interface';
-
-
-export type LLM = 'chatGPT' | 'claudeAI' | 'bard';
-export interface AdapterConfig {
-  type: LLM;
-  baseurl: string;
-  apiKey: string;
-}
+import { AdapterConfig, CompletionService } from './interfaces';
 
 export class CompletionServiceSelector implements CompletionService {
   private adapter: CompletionService;
@@ -15,9 +7,13 @@ export class CompletionServiceSelector implements CompletionService {
   constructor(adapterConfig: AdapterConfig) {
     switch (adapterConfig.type) {
       case 'chatGPT':
+        if (!adapterConfig.model) {
+          throw Error('Model is required for ChatGPT adapter');
+        }
         this.adapter = new ChatGPTAdapter(
           adapterConfig.baseurl,
-          adapterConfig.apiKey || ''
+          adapterConfig.apiKey,
+          adapterConfig.model
         );
         break;
       case 'claudeAI':

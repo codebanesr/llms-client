@@ -4,26 +4,38 @@ import { CompletionService } from '../interfaces/completion.interface';
 export class ChatGPTAdapter implements CompletionService {
   private readonly baseurl: string;
   private readonly apiKey: string;
+  private readonly model: string;
 
-  constructor(baseurl: string, apiKey: string) {
+  constructor(baseurl: string, apiKey: string, model: string) {
     this.baseurl = baseurl;
     this.apiKey = apiKey;
+    this.model = model;
   }
 
   async complete(prompt: string, maxTokens: number): Promise<string> {
     try {
-      axios.defaults.headers.common.Authorization = `Bearer ${this.apiKey}`;
-      axios.defaults.headers.common['Content-Type'] = `application/json`;
+      const response = await axios.post(
+        this.baseurl,
+        {
+          model: this.model,
+          prompt: prompt,
+          max_tokens: maxTokens,
+          temperature: 0,
+        },
+        {
+          headers: {
+            'Content-Type': 'application/json',
+            Authorization: `Bearer ${this.apiKey}`,
+          },
+        }
+      );
 
-      const response = await axios.post(this.baseurl, {
-        prompt,
-        max_tokens: maxTokens,
-      });
+      console.log(response);
 
       return response.data.choices[0].text;
     } catch (error) {
-      console.error('Error occurred during API request:', error);
-      throw error; // rethrow the error to propagate it if needed
+      console.log(error);
+      throw error;
     }
   }
 }
