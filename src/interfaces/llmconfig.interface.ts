@@ -1,4 +1,4 @@
-import { ClaudeSupportedModel } from './claude';
+import { ClaudeSupportedModel } from './claude.interface';
 
 export type LLM = 'chatGPT' | 'claudeAI' | 'bard';
 

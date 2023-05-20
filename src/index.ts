@@ -1,6 +1,6 @@
 import { BardAdapter, ChatGPTAdapter, ClaudeAIAdapter } from './adapters';
 import { AdapterConfig, CompletionService, OpenAIModel } from './interfaces';
-import { ClaudeSupportedModel } from './interfaces/claude';
+import { ClaudeSupportedModel } from './interfaces/claude.interface';
 
 export class CompletionServiceSelector implements CompletionService {
   private adapter: CompletionService;
@@ -33,6 +33,10 @@ export class CompletionServiceSelector implements CompletionService {
       default:
         throw Error(`Invalid adapter: ${adapterConfig.type}`);
     }
+  }
+  
+  getChatCompletions(messages: Message[], maxTokens: number): Promise<string> {
+    return this.adapter.getChatCompletions(messages, maxTokens);
   }
 
   complete(prompt: string, maxTokens: number): Promise<string> {

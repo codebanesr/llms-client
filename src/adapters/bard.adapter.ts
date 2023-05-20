@@ -30,6 +30,11 @@ export class BardAdapter implements CompletionService {
       throw error;
     }
   }
+
+  getChatCompletions(messages: Message[], maxTokens: number): Promise<string> {
+    console.log({ messages, maxTokens });
+    throw new Error('Method not implemented.');
+  }
 }
 
 interface BardAiResponse {

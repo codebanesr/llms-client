@@ -1,3 +1,13 @@
+export interface ClaudeAIResponse {
+  completion: string;
+  stop: string;
+  stop_reason: string;
+  truncated: boolean;
+  log_id: string;
+  model: string;
+  exception?: string;
+}
+
 
 /**
  * Supported models for querying Claude.
