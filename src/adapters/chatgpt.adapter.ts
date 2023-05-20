@@ -19,14 +19,12 @@ export class ChatGPTAdapter implements CompletionService {
 
   async complete(prompt: string, maxTokens: number): Promise<string> {
     try {
-      const response = await this.axiosInstance.post('', {
+      const response = await this.axiosInstance.post('/v1/completions', {
         model: this.model,
         prompt,
         max_tokens: maxTokens,
         temperature: 0,
       });
-
-      console.log(response);
 
       return response.data.choices[0].text;
     } catch (error) {
@@ -39,21 +37,23 @@ export class ChatGPTAdapter implements CompletionService {
     messages: Message[],
     maxTokens: number
   ): Promise<string> {
-    console.log({ unused: maxTokens });
-    const requestData: ChatCompletionRequest = {
-      model: this.model,
+    console.log({ messages, maxTokens });
+
+    const data = {
+      model: 'gpt-3.5-turbo',
       messages,
+      temperature: 0.7,
     };
 
     try {
       const response = await this.axiosInstance.post<ChatCompletionResponse>(
-        '',
-        requestData
+        '/v1/chat/completions',
+        data,
       );
-
       return response.data.choices[0].message.content;
     } catch (error) {
-      // Handle errors
+      console.error(error);
+      // Handle the error appropriately
       throw error;
     }
   }
