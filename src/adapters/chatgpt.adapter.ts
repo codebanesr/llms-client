@@ -1,12 +1,13 @@
 import axios from 'axios';
 import { CompletionService } from '../interfaces/completion.interface';
+import { OpenAIModel } from '../interfaces';
 
 export class ChatGPTAdapter implements CompletionService {
   private readonly baseurl: string;
   private readonly apiKey: string;
   private readonly model: string;
 
-  constructor(baseurl: string, apiKey: string, model: string) {
+  constructor(baseurl: string, apiKey: string, model: OpenAIModel) {
     this.baseurl = baseurl;
     this.apiKey = apiKey;
     this.model = model;

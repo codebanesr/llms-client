@@ -1,5 +1,6 @@
 import { BardAdapter, ChatGPTAdapter, ClaudeAIAdapter } from './adapters';
-import { AdapterConfig, CompletionService } from './interfaces';
+import { AdapterConfig, CompletionService, OpenAIModel } from './interfaces';
+import { ClaudeSupportedModel } from './interfaces/claude';
 
 export class CompletionServiceSelector implements CompletionService {
   private adapter: CompletionService;
@@ -13,13 +14,14 @@ export class CompletionServiceSelector implements CompletionService {
         this.adapter = new ChatGPTAdapter(
           adapterConfig.baseurl,
           adapterConfig.apiKey,
-          adapterConfig.model
+          adapterConfig.model as OpenAIModel
         );
         break;
       case 'claudeAI':
         this.adapter = new ClaudeAIAdapter(
           adapterConfig.baseurl,
-          adapterConfig.apiKey
+          adapterConfig.apiKey,
+          adapterConfig.model as ClaudeSupportedModel
         );
         break;
       case 'bard':

@@ -1,13 +1,16 @@
 import axios, { AxiosRequestConfig } from 'axios';
 import { CompletionService } from '../interfaces/completion.interface';
+import { ClaudeSupportedModel } from '../interfaces/claude';
 
 export class ClaudeAIAdapter implements CompletionService {
   private readonly apiUrl: string;
   private readonly apiKey: string;
+  private readonly model: ClaudeSupportedModel;
 
-  constructor(apiUrl: string, apiKey: string) {
+  constructor(apiUrl: string, apiKey: string, model: ClaudeSupportedModel) {
     this.apiUrl = apiUrl;
     this.apiKey = apiKey;
+    this.model = model;
   }
 
   async complete(prompt: string, maxTokens: number): Promise<string> {
@@ -15,7 +18,7 @@ export class ClaudeAIAdapter implements CompletionService {
     try {
       let data = {
         prompt: `\n\nHuman: ${prompt}\n\nAssistant: `,
-        model: 'claude-v1',
+        model: this.model,
         max_tokens_to_sample: maxTokens,
         stop_sequences: ['\n\nHuman:'],
       };
