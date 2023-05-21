@@ -10,10 +10,7 @@ async function completePrompt(prompt, maxTokens) {
 
   const service = new CompletionServiceSelector(config);
 
-  // const completion = await service.complete(prompt, maxTokens);
-  // console.log({completion})
-  
-  // chat completion here
+  // only supports gpt-3.5-turbo
   const chat_completion = await service.getChatCompletions([{"role": "user", "content": "Hello!"}], maxTokens);
   console.log({chat_completion});
 }

@@ -82,6 +82,11 @@ You can run these scripts using npm. For example:
 npm run build
 ```
 
+## Usage examples
+[GPT usage example](test/gpt.test.js)
+[Claude(Anthropic) usage example](test/claude.test.js)
+[Bard usage example](test/bard.test.js) Coming soon
+
 ## Configuration
 
 The package can be configured using the `package.json` file. Some important fields include:
