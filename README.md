@@ -1,6 +1,10 @@
-# llms-client
+## 📦 llms-client - Connect to Multiple Language Models (LLMs)
 
-A package that allows users to connect to multiple Language Models (LLMs) including Claude, Bard, and ChatGPT.
+A powerful package that enables users to effortlessly connect to various Language Models, including Claude, Bard, and ChatGPT. Stay tuned for upcoming support for Vicuna and Alpaca!
+
+🔗 Get it on [npm](https://www.npmjs.com/package/llms-client)
+
+#AI #Development #LLMs
 
 ## Installation
 
