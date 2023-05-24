@@ -1,5 +1,5 @@
 {
-  "version": "2.2.1",
+  "version": "2.2.2",
   "license": "MIT",
   "main": "dist/index.js",
   "typings": "dist/index.d.ts",
@@ -51,7 +51,7 @@
     "tslib": "^2.5.2",
     "typescript": "^3.9.10"
   },
-  "description": "Congrats! You just saved yourself hours of work by bootstrapping this project with TSDX. Let’s get you oriented with what’s here and how to use it.",
+  "description": "A powerful package that enables users to effortlessly connect to various Language Models, including Claude, Bard, and ChatGPT. Stay tuned for upcoming support for Vicuna and Alpaca!",
   "directories": {
     "test": "test"
   },
@@ -60,6 +60,8 @@
     "url": "git+https://github.com/shanurrahman/llms-client.git"
   },
   "keywords": [
+    "llm client",
+    "LLM",
     "claudeai",
     "claude",
     "chatgpt",
