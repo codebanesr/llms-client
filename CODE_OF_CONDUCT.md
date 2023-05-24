@@ -29,7 +29,7 @@ Examples of unacceptable behavior by participants include:
 
 ## Reporting and Enforcement
 
-Instances of abusive, harassing, or otherwise unacceptable behavior may be reported by contacting the project team at [contact email or other appropriate contact information]. All complaints will be reviewed and investigated promptly and fairly.
+Instances of abusive, harassing, or otherwise unacceptable behavior may be reported by contacting the project team at [shanur.cse.nitap@gmail.com]. All complaints will be reviewed and investigated promptly and fairly.
 
 The project team is obligated to maintain confidentiality with regard to the reporter of an incident. Any individual who violates this Code of Conduct may be temporarily or permanently banned from the project's community spaces, as determined by the project team.
 
@@ -43,4 +43,4 @@ This Code of Conduct applies to all project-related spaces, including project re
 
 ## Contact
 
-If you have any questions or concerns regarding this Code of Conduct, please contact the project team at [contact email or other appropriate contact information].
+If you have any questions or concerns regarding this Code of Conduct, please contact the project team at [shanur.cse.nitap@gmail.com].
