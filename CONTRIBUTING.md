@@ -61,8 +61,19 @@ To contribute to the project, follow these steps:
 
 ## Coding Guidelines
 
-- [List your coding conventions, style guides, and best practices here].
-- [Include any specific guidelines or patterns to follow].
+- Follow the established coding conventions, style guides, and best practices of the Node.js community.
+- Maintain consistency in code formatting and naming conventions throughout the project.
+- Document your code using inline comments and appropriate documentation tools such as JSDoc.
+- Ensure that your code is modular and follows the principles of separation of concerns.
+- Use descriptive variable and function names that accurately represent their purpose and functionality.
+- Write clear and concise code that is easy to understand and maintain.
+- Avoid the use of global variables whenever possible and encapsulate your code in modules.
+- Utilize appropriate design patterns and architectural principles to structure your Node.js application.
+- Make use of the Node.js built-in modules and libraries whenever possible to improve efficiency and performance.
+- Regularly review and refactor your code to improve its readability, maintainability, and performance.
+- Write comprehensive and meaningful unit tests to ensure the correctness of your code.
+- Follow security best practices and sanitize user inputs to prevent security vulnerabilities.
+- Stay updated with the latest releases and security patches of the Node.js platform and its dependencies.
 
 ## Commit Guidelines
 
