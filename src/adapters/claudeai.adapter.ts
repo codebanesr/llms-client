@@ -1,6 +1,9 @@
 import axios, { AxiosInstance, AxiosRequestConfig } from 'axios';
 import { CompletionService } from '../interfaces/completion.interface';
-import { ClaudeAIResponse, ClaudeSupportedModel } from '../interfaces/claude.interface';
+import {
+  ClaudeAIResponse,
+  ClaudeSupportedModel,
+} from '../interfaces/claude.interface';
 
 export class ClaudeAIAdapter implements CompletionService {
   private readonly axiosInstance: AxiosInstance;
@@ -34,7 +37,9 @@ export class ClaudeAIAdapter implements CompletionService {
         data,
       };
 
-      const response = await this.axiosInstance.request<ClaudeAIResponse>(config);
+      const response = await this.axiosInstance.request<ClaudeAIResponse>(
+        config
+      );
       return response.data.completion;
     } catch (error) {
       console.error('Error completing prompt:', error);
@@ -42,17 +47,25 @@ export class ClaudeAIAdapter implements CompletionService {
     }
   }
 
-  async getChatCompletions(messages: Message[], maxTokens: number): Promise<string> {
-    const prompt = messages.map((message) => `${message.role}: ${message.content}`).join("\n\n");
+  async getChatCompletions(
+    messages: Message[],
+    maxTokens: number
+  ): Promise<string> {
+    const prompt = messages
+      .map(message => `${message.role}: ${message.content}`)
+      .join('\n\n');
     const data = {
       prompt,
       model: this.model,
       max_tokens_to_sample: maxTokens,
-      stop_sequences: ["\n\nHuman:"],
+      stop_sequences: ['\n\nHuman:'],
     };
 
     try {
-      const response = await this.axiosInstance.post<ClaudeAIResponse>('', data);
+      const response = await this.axiosInstance.post<ClaudeAIResponse>(
+        '',
+        data
+      );
       return response.data.completion;
     } catch (error) {
       console.error('Error getting chat completions:', error);

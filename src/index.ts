@@ -34,7 +34,7 @@ export class CompletionServiceSelector implements CompletionService {
         throw Error(`Invalid adapter: ${adapterConfig.type}`);
     }
   }
-  
+
   getChatCompletions(messages: Message[], maxTokens: number): Promise<string> {
     return this.adapter.getChatCompletions(messages, maxTokens);
   }

@@ -1,4 +1,4 @@
-const {  CompletionServiceSelector } = require('../dist/index');
+const { CompletionServiceSelector } = require('../dist/index');
 
 async function completePrompt(prompt, maxTokens) {
   const config = {
@@ -17,4 +17,6 @@ completePrompt('What is the capital of united states', 300)
   .then(data => {
     console.log(data);
   })
-  .catch(() => {});
+  .catch(e => {
+    console.error(e);
+  });

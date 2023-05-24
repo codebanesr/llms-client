@@ -8,7 +8,6 @@ export interface ClaudeAIResponse {
   exception?: string;
 }
 
-
 /**
  * Supported models for querying Claude.
  */

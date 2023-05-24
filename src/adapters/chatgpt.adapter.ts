@@ -48,7 +48,7 @@ export class ChatGPTAdapter implements CompletionService {
     try {
       const response = await this.axiosInstance.post<ChatCompletionResponse>(
         '/v1/chat/completions',
-        data,
+        data
       );
       return response.data.choices[0].message.content;
     } catch (error) {
