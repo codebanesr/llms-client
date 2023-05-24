@@ -99,6 +99,10 @@ The package can be configured using the `package.json` file. Some important fiel
 - `author`: The author of the package.
 - `module`: The entry point for the package's ES module version.
 
+## Contribution
+
+Please follow the [Contribution Guide](CONTRIBUTING.md) for detailed instructions on how to contribute to this project.
+
 ## License
 
 This package is licensed under the MIT License.
