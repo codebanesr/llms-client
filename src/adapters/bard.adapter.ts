@@ -1,5 +1,6 @@
 import axios from 'axios';
 import { CompletionService } from '../interfaces/completion.interface';
+import { Message } from '../interfaces';
 
 export class BardAdapter implements CompletionService {
   private readonly apiUrl: string;

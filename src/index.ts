@@ -1,5 +1,5 @@
 import { BardAdapter, ChatGPTAdapter, ClaudeAIAdapter } from './adapters';
-import { AdapterConfig, CompletionService, OpenAIModel } from './interfaces';
+import { AdapterConfig, CompletionService, Message, OpenAIModel } from './interfaces';
 import { ClaudeSupportedModel } from './interfaces/claude.interface';
 
 
