@@ -103,6 +103,13 @@ The package can be configured using the `package.json` file. Some important fiel
 
 Please follow the [Contribution Guide](CONTRIBUTING.md) for detailed instructions on how to contribute to this project.
 
+## Contributors
+
+Thank you to the following people for their contributions to this project:
+
+* [Shanur Rahman](https://github.com/shanur-rahman) (shanur.cse.nitap@gmail.com)
+* [Marzoog AlGhazwi](https://github.com/Marzoog-Alghazwi) (marzoog.m.alghazwi@gmail.com)
+
 ## License
 
 This package is licensed under the MIT License.
