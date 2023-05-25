@@ -2,6 +2,8 @@ import { BardAdapter, ChatGPTAdapter, ClaudeAIAdapter } from './adapters';
 import { AdapterConfig, CompletionService, OpenAIModel } from './interfaces';
 import { ClaudeSupportedModel } from './interfaces/claude.interface';
 
+
+export * from './interfaces';
 export class CompletionServiceSelector implements CompletionService {
   private adapter: CompletionService;
 
