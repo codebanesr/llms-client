@@ -4,22 +4,23 @@ import {
   ClaudeAIResponse,
   ClaudeSupportedModel,
 } from '../interfaces/claude.interface';
+import { AdapterConfig, Message } from '../interfaces';
 
 export class ClaudeAIAdapter implements CompletionService {
   private readonly axiosInstance: AxiosInstance;
   private readonly model: ClaudeSupportedModel;
 
-  constructor(apiUrl: string, apiKey: string, model: ClaudeSupportedModel) {
+  constructor(adapterConfig: AdapterConfig) {
     this.axiosInstance = axios.create({
-      baseURL: apiUrl,
+      timeout: adapterConfig.timeout || 10*1000,
+      baseURL: adapterConfig.baseurl,
       headers: {
-        'x-api-key': apiKey,
+        'x-api-key': adapterConfig.apiKey,
         'content-type': 'application/json',
       },
-      timeout: 10 * 1000,
       maxBodyLength: Infinity,
     });
-    this.model = model;
+    this.model = adapterConfig.model as ClaudeSupportedModel;
   }
 
   async complete(prompt: string, maxTokens: number): Promise<string> {

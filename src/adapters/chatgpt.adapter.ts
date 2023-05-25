@@ -1,20 +1,21 @@
 import axios, { AxiosInstance } from 'axios';
 import { CompletionService } from '../interfaces/completion.interface';
-import { OpenAIModel } from '../interfaces';
+import { AdapterConfig, Message, OpenAIModel } from '../interfaces';
 
 export class ChatGPTAdapter implements CompletionService {
   private readonly axiosInstance: AxiosInstance;
   private readonly model: string;
 
-  constructor(baseurl: string, apiKey: string, model: OpenAIModel) {
+  constructor(adapterConfig: AdapterConfig) {
     this.axiosInstance = axios.create({
-      baseURL: baseurl,
+      timeout: adapterConfig.timeout || 10*1000,
+      baseURL: adapterConfig.baseurl,
       headers: {
         'Content-Type': 'application/json',
-        Authorization: `Bearer ${apiKey}`,
+        Authorization: `Bearer ${adapterConfig.apiKey}`,
       },
     });
-    this.model = model;
+    this.model = adapterConfig.model as OpenAIModel;
   }
 
   async complete(prompt: string, maxTokens: number): Promise<string> {

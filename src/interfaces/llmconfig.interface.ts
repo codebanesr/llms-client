@@ -18,4 +18,7 @@ export interface AdapterConfig {
   baseurl: string;
   apiKey: string;
   model?: OpenAIModel | ClaudeSupportedModel;
+  
+  /** The default timeout is set to 10 seconds, but it is recommended to consider adjusting it based on the performance characteristics of language models, which can sometimes be slower */
+  timeout?: number;
 }

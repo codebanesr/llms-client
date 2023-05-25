@@ -1,6 +1,5 @@
 import { BardAdapter, ChatGPTAdapter, ClaudeAIAdapter } from './adapters';
-import { AdapterConfig, CompletionService, Message, OpenAIModel } from './interfaces';
-import { ClaudeSupportedModel } from './interfaces/claude.interface';
+import { AdapterConfig, CompletionService, Message } from './interfaces';
 
 
 export * from './interfaces';
@@ -13,24 +12,13 @@ export class CompletionServiceSelector implements CompletionService {
         if (!adapterConfig.model) {
           throw Error('Model is required for ChatGPT adapter');
         }
-        this.adapter = new ChatGPTAdapter(
-          adapterConfig.baseurl,
-          adapterConfig.apiKey,
-          adapterConfig.model as OpenAIModel
-        );
+        this.adapter = new ChatGPTAdapter(adapterConfig);
         break;
       case 'claudeAI':
-        this.adapter = new ClaudeAIAdapter(
-          adapterConfig.baseurl,
-          adapterConfig.apiKey,
-          adapterConfig.model as ClaudeSupportedModel
-        );
+        this.adapter = new ClaudeAIAdapter(adapterConfig);
         break;
       case 'bard':
-        this.adapter = new BardAdapter(
-          adapterConfig.baseurl,
-          adapterConfig.apiKey
-        );
+        this.adapter = new BardAdapter(adapterConfig);
         break;
       default:
         throw Error(`Invalid adapter: ${adapterConfig.type}`);

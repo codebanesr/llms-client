@@ -1,14 +1,14 @@
 import axios from 'axios';
 import { CompletionService } from '../interfaces/completion.interface';
-import { Message } from '../interfaces';
+import { AdapterConfig, Message } from '../interfaces';
 
 export class BardAdapter implements CompletionService {
   private readonly apiUrl: string;
   private readonly apiKey: string;
 
-  constructor(apiUrl: string, apiKey: string) {
-    this.apiUrl = apiUrl;
-    this.apiKey = apiKey;
+  constructor(adapterConfig: AdapterConfig) {
+    this.apiUrl = adapterConfig.baseurl;
+    this.apiKey = adapterConfig.apiKey;
   }
 
   async complete(prompt: string, maxTokens: number): Promise<string> {

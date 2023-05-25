@@ -2,7 +2,7 @@ const { CompletionServiceSelector } = require('../dist/index');
 
 async function completePrompt(prompt, maxTokens) {
   const config = {
-    apiKey: '',
+    apiKey: process.env.openaiKey,
     baseurl: 'https://api.openai.com',
     type: 'chatGPT',
     model: 'text-davinci-003',
