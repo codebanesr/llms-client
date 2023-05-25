@@ -33,25 +33,78 @@ To use the package, follow these steps:
 
 2. Get chat completions by providing a list of messages and the maximum number of tokens in the completion response.
 
-   ```typescript
-   const messages: Message[] = [
-     { role: 'system', content: 'Welcome!' },
-     { role: 'user', content: 'Hello, how are you?' },
-     { role: 'assistant', content: 'I\'m doing well, thank you!' },
-   ];
+```ts
+const messages: Message[] = [
+  { role: "system", content: "Welcome!" },
+  { role: "user", content: "Hello, how are you?" },
+  { role: "assistant", content: "I'm doing well, thank you!" },
+];
 
-   const maxTokens = 100; // Maximum number of tokens in the completion response
+const { CompletionServiceSelector } = require("../dist/index");
 
-   completionService.getChatCompletions(messages, maxTokens)
-     .then((response: string) => {
-       // Handle the completion response
-       console.log(response);
-     })
-     .catch((error: Error) => {
-       // Handle errors
-       console.error(error);
-     });
-   ```
+async function completePrompt(prompt, maxTokens) {
+  const config = {
+    apiKey: "",
+    baseurl: "https://api.openai.com",
+    type: "chatGPT",
+    model: "text-davinci-003",
+  };
+
+  const service = new CompletionServiceSelector(config);
+
+  // only supports gpt-3.5-turbo
+  const chat_completion = await service.getChatCompletions(messages, maxTokens);
+  console.log({ chat_completion });
+}
+
+completePrompt("What is the purpose of life ?", 300)
+  .then((data) => {
+    console.log(data);
+  })
+  .catch((e) => {
+    console.error(e);
+  });
+```
+
+---
+
+### Claude full example
+```ts
+const { CompletionServiceSelector } = require('../dist/index');
+
+async function completePrompt(prompt, maxTokens) {
+  const config = {
+    apiKey: '',
+    baseurl: 'https://api.anthropic.com/v1/complete',
+    type: 'claudeAI',
+    model: 'claude-v1'
+  };
+
+  const service = new CompletionServiceSelector(config);
+
+  const completionResponse = await service.complete(prompt, maxTokens);
+  console.log(completionResponse);
+
+  /** 
+   * the last message's content has to be left empty... This will be filled by claude 
+   * */ 
+  const messages = [
+    { role: 'Human', content: 'Tell me a haiku about trees' },
+    { role: 'Assistant', content: '' }
+  ];
+
+  const chatResponse = await service.getChatCompletions(messages, 300);
+  console.log(chatResponse);
+}
+
+completePrompt('What is the capital of united states', 300)
+  .then(data => {
+    console.log(data);
+  })
+  .catch(e => {
+    console.error(e);
+  });
+```
 
 3. Make a completion with a prompt by providing the prompt and the maximum number of tokens in the completion response.
 

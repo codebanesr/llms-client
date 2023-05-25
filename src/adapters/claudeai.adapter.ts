@@ -61,6 +61,8 @@ export class ClaudeAIAdapter implements CompletionService {
       stop_sequences: ['\n\nHuman:'],
     };
 
+    console.log({data});
+
     try {
       const response = await this.axiosInstance.post<ClaudeAIResponse>(
         '',
