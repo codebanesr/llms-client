@@ -1,8 +1,9 @@
+// export $(grep -v '^#' .env | grep -v '^\s*$' | xargs)
 const { CompletionServiceSelector } = require('../dist/index');
 
 async function completePrompt(prompt, maxTokens) {
   const config = {
-    apiKey: '',
+    apiKey: process.env.claudeKey,
     baseurl: 'https://api.anthropic.com/v1/complete',
     type: 'claudeAI',
     model: 'claude-v1'
